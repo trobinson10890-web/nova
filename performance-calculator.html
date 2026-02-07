@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Calculator - NovaByte</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .calculator-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .calc-section {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .calc-section h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--input-bg);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .results-section {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--accent-bg), var(--card-bg));
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--accent-color);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .result-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .result-fps {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 0.5rem 0;
+        }
+
+        .result-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .performance-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .excellent {
+            background: #00ff00;
+            color: #000;
+        }
+
+        .very-good {
+            background: #7fff00;
+            color: #000;
+        }
+
+        .good {
+            background: #ffff00;
+            color: #000;
+        }
+
+        .acceptable {
+            background: #ffa500;
+            color: #000;
+        }
+
+        .poor {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .info-box {
+            background: var(--input-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="assets/ChatGPT_Image_Feb_7__2026__04_18_06_PM-removebg-preview.png" alt="NovaByte Logo" class="logo-icon">
+                    <h1>NovaByte</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html" class="nav-link">Home</a></li>
+                    <li><a href="products.html" class="nav-link">Shop</a></li>
+                    <li><a href="customize.html" class="nav-link">Build PC</a></li>
+                    <li><a href="contact.html" class="nav-link">Support</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="account.html" class="nav-icon" title="Account">
+                        <span class="icon">👤</span>
+                    </a>
+                    <a href="checkout.html" class="nav-icon" title="Cart">
+                        <span class="icon">🛒</span>
+                        <span class="cart-badge" style="display: none;">0</span>
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Performance Calculator -->
+    <section class="calculator-container">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h1>Gaming Performance Calculator</h1>
+            <p style="color: var(--text-secondary);">Estimate FPS for your favorite games on different PC systems</p>
+        </div>
+
+        <div class="calculator-grid">
+            <div class="calc-section">
+                <h3>Select Game</h3>
+                <div class="form-group">
+                    <label>Game Title</label>
+                    <select id="gameSelect" onchange="calculatePerformance()">
+                        <option value="">-- Select a game --</option>
+                        <option value="valorant">Valorant</option>
+                        <option value="cs2">Counter-Strike 2</option>
+                        <option value="fortnite">Fortnite</option>
+                        <option value="elden-ring">Elden Ring</option>
+                        <option value="cyberpunk">Cyberpunk 2077</option>
+                        <option value="starfield">Starfield</option>
+                        <option value="black-myth">Black Myth: Wukong</option>
+                        <option value="dragon-age">Dragon's Dogma 2</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Graphics Settings</label>
+                    <select id="settingsSelect" onchange="calculatePerformance()">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="ultra" selected>Ultra</option>
+                        <option value="max">Maximum</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Resolution</label>
+                    <select id="resolutionSelect" onchange="calculatePerformance()">
+                        <option value="1080p">1920x1080 (1080p)</option>
+                        <option value="1440p" selected>2560x1440 (1440p)</option>
+                        <option value="4k">3840x2160 (4K)</option>
+                    </select>
+                </div>
+
+                <div class="info-box">
+                    💡 Select your game, graphics settings, and resolution to see estimated FPS for different PC systems.
+                </div>
+            </div>
+
+            <div class="calc-section">
+                <h3>Select Your PC</h3>
+                <div class="form-group">
+                    <label>System Tier</label>
+                    <select id="systemSelect" onchange="calculatePerformance()">
+                        <option value="">-- Select a system --</option>
+                        <option value="elite">Elite Performance ($899)</option>
+                        <option value="pro">Professional Pro ($1,499)</option>
+                        <option value="ultra">Ultra Extreme ($2,299)</option>
+                        <option value="custom">Custom Build</option>
+                    </select>
+                </div>
+
+                <div id="customGpuSection" style="display: none;">
+                    <div class="form-group">
+                        <label>GPU</label>
+                        <select id="gpuSelect" onchange="calculatePerformance()">
+                            <option value="rtx-4070">RTX 4070 Super</option>
+                            <option value="rtx-4080">RTX 4080 Super</option>
+                            <option value="rtx-4090">RTX 4090</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    🎮 Choose a pre-built system or customize your GPU to see real performance estimates.
+                </div>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <h3 style="margin-top: 0; color: var(--text-primary);">Performance Estimates</h3>
+                <div class="results-grid" id="resultsGrid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="products.html">Gaming PCs</a></li>
+                        <li><a href="customize.html">PC Builder</a></li>
+                        <li><a href="reviews.html">Customer Reviews</a></li>
+                        <li><a href="FAQ.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="warranty.html">Warranty Plans</a></li>
+                        <li><a href="financing.html">Financing</a></li>
+                        <li><a href="account.html">My Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                        <li><a href="tos.html">Terms of Service</a></li>
+                        <li><a href="warranty.html">Warranty Info</a></li>
+                        <li><a href="admin-login.html" style="color: #999; font-size: 0.9rem;">Admin</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NovaByte. All rights reserved. | Engineered for Performance</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/social-footer.js"></script>
+    <script src="assets/js/performance-calc.js"></script>
+</body>
+</html>

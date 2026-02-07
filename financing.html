@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financing Options - NovaByte Gaming</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .financing-header {
+            background-image: url('assets/financing-banner.png');
+            background-size: cover;
+            background-position: center;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-radius: 12px;
+        }
+
+        .financing-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .financing-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .calculator-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .calculator-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .calc-input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .calc-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .calc-value-display {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border-color);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(100, 200, 255, 0.5);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .slider::-moz-range-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(100, 200, 255, 0.5);
+        }
+
+        .calc-result {
+            background: var(--input-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        .result-row:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: var(--text-secondary);
+        }
+
+        .result-value {
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .total-row {
+            background: var(--accent-bg);
+            border-radius: 6px;
+            padding: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .total-row .result-label {
+            display: none;
+        }
+
+        .total-row .result-value {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .financing-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .financing-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .financing-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(100, 200, 255, 0.15);
+        }
+
+        .financing-card.featured {
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(100, 200, 255, 0.2);
+            transform: scale(1.02);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .financing-provider {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .financing-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .financing-terms {
+            flex: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .term-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        .term-item:last-child {
+            border-bottom: none;
+        }
+
+        .term-label {
+            color: var(--text-secondary);
+        }
+
+        .term-value {
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .term-badge {
+            display: inline-block;
+            background: var(--success-bg);
+            color: var(--success-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .apply-btn {
+            width: 100%;
+            padding: 0.85rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .apply-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .apply-btn.outlined {
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .apply-btn.outlined:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .comparison-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            overflow-x: auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table thead {
+            background: var(--accent-bg);
+        }
+
+        .comparison-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: bold;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison-table tbody tr:nth-child(even) {
+            background: var(--input-bg);
+        }
+
+        .benefits-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .benefit-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .faq-accordion {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--input-bg);
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: var(--accent-bg);
+            color: var(--accent-color);
+        }
+
+        .accordion-content {
+            padding: 1.5rem;
+            display: none;
+            background: var(--card-bg);
+        }
+
+        .accordion-content.show {
+            display: block;
+        }
+
+        .accordion-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .accordion-toggle.open {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="assets/ChatGPT_Image_Feb_7__2026__04_18_06_PM-removebg-preview.png" alt="NovaByte Logo" class="logo-icon">
+                    <h1>NovaByte</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html" class="nav-link">Home</a></li>
+                    <li><a href="products.html" class="nav-link">Shop</a></li>
+                    <li><a href="customize.html" class="nav-link">Build PC</a></li>
+                    <li><a href="contact.html" class="nav-link">Support</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="account.html" class="nav-icon" title="Account">
+                        <span class="icon">👤</span>
+                    </a>
+                    <a href="checkout.html" class="nav-icon" title="Cart">
+                        <span class="icon">🛒</span>
+                        <span class="cart-badge" style="display: none;">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="financing-header">
+            <h1>Flexible Financing Options</h1>
+            <p>Upgrade your gaming setup with affordable payment plans</p>
+        </section>
+
+        <!-- Payment Calculator -->
+        <div class="calculator-card">
+            <div class="calculator-title">💰 Payment Calculator</div>
+            
+            <div class="calc-input-group">
+                <label class="calc-label">PC Price</label>
+                <input type="range" id="price-slider" class="slider" min="500" max="5000" step="50" value="2000" 
+                       oninput="updateCalculator()">
+                <div class="calc-value-display">$<span id="price-value">2000</span></div>
+            </div>
+
+            <div class="calc-input-group">
+                <label class="calc-label">Financing Duration</label>
+                <select id="months-select" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--input-bg); color: var(--text-primary);" onchange="updateCalculator()">
+                    <option value="6">6 Months</option>
+                    <option value="12" selected>12 Months</option>
+                    <option value="24">24 Months</option>
+                    <option value="36">36 Months</option>
+                </select>
+            </div>
+
+            <div class="calc-result">
+                <div class="result-row">
+                    <span class="result-label">Total Purchase Price</span>
+                    <span class="result-value">$<span id="result-price">2000</span></span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Interest Rate (from)</span>
+                    <span class="result-value">0% APR*</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Monthly Payment</span>
+                    <span class="result-value">$<span id="result-monthly">167</span></span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Processing Fee</span>
+                    <span class="result-value" id="result-fee">$0</span>
+                </div>
+                <div class="total-row result-row">
+                    <span class="result-label">Total Amount</span>
+                    <span class="result-value">$<span id="result-total">2000</span></span>
+                </div>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1rem; text-align: center;">
+                *Available to qualified buyers. Subject to credit approval.
+            </p>
+        </div>
+
+        <!-- Financing Options -->
+        <h2 style="text-align: center; margin: 3rem 0 2rem;">Available Financing Partners</h2>
+        <div class="financing-options">
+            <!-- Affirm -->
+            <div class="financing-card featured">
+                <div class="badge">Most Flexible</div>
+                <div class="financing-provider">Affirm</div>
+                <div class="financing-description">Monthly payment plans with transparent pricing</div>
+                <div class="financing-terms">
+                    <div class="term-item">
+                        <span class="term-label">APR</span>
+                        <span class="term-value">0% - 30%</span>
+                    </div>
+                    <div class="term-item">
+                        <span class="term-label">Terms</span>
+                        <span class="term-value">3 to 12 months</span>
+                    </div>
+                    <div class="term-item">
+                        <span class="term-label">Min Amount</span>
+                        <span class="term-value">$50+</span>
+                    </div>
+                    <div class="term-item">
+                        <span class="term-label">Max Amount</span>
+                        <span class="term-value">$30,000+</span>
+                    </div>
+                    <div class="term-item">
+                        <span class="term-label">Approval</span>
+                        <span class="term-value"><span class="term-badge">Instant</span></span>
+                    </div>
+                </div>
+                <button class="apply-btn" onclick="applyFinancing('Affirm')">Apply with Affirm</button>
+            </div>
+
+            <!-- PayPal Credit -->
+            <div class="financing-card">
+                <div class="badge">No Hassle</div>
+                <div class="financing-provider">PayPal Credit</div>
+                <div class="financing-description">Flexible credit line for purchases</div>
+                <div class="financing-terms">
+                    <div class="term-item">
+                        <span class="term-label">APR</span>
+                        <span class="term-value">0% - 29.99%</span>
+                    </div>
+                    <div class="term-item">
+                        <span class="term-label">Terms</span>
+                        <span class="term-value">Flexible</span>
+                    </div>
+                    <div class="term-item">
+                        <span class="term-label">Min Amount</span>
+                        <span class="term-value">$99+</span>
+                    </div>
+                    <div class="term-item">
+                        <span class="term-label">Max Amount</span>
+                        <span class="term-value">$50,000+</span>
+                    </div>
+                    <div class="term-item">
+                        <span class="term-label">Approval</span>
+                        <span class="term-value"><span class="term-badge">Instant</span></span>
+                    </div>
+                </div>
+                <button class="apply-btn outlined" onclick="applyFinancing('PayPal')">Apply with PayPal</button>
+            </div>
+
+            <!-- Klarna -->
+            <div class="financing-card">
+                <div class="badge">Pay Later</div>
+                <div class="financing-provider">Klarna</div>
+                <div class="financing-description">Pay in 4 interest-free installments</div>
+                <div class="financing-terms">
+                    <div class="term-item">
+                        <span class="term-label">APR</span>
+                        <span class="term-value">0% - 29.99%</span>
+                    </div>
+                    <div class="term-item">
+                        <span class="term-label">Terms</span>
+                        <span class="term-value">4-36 months</span>
+                    </div>
+                    <div class="term-item">
+                        <span class="term-label">Min Amount</span>
+                        <span class="term-value">$50+</span>
+                    </div>
+                    <div class="term-item">
+                        <span class="term-label">Max Amount</span>
+                        <span class="term-value">$30,000+</span>
+                    </div>
+                    <div class="term-item">
+                        <span class="term-label">Approval</span>
+                        <span class="term-value"><span class="term-badge">Instant</span></span>
+                    </div>
+                </div>
+                <button class="apply-btn outlined" onclick="applyFinancing('Klarna')">Apply with Klarna</button>
+            </div>
+        </div>
+
+        <!-- Benefits Section -->
+        <h2 style="text-align: center; margin: 3rem 0 2rem;">Why Finance with Us?</h2>
+        <div class="benefits-section">
+            <div class="benefit-card">
+                <div class="benefit-icon">🔒</div>
+                <div class="benefit-title">Safe & Secure</div>
+                <div class="benefit-description">All partners are trusted, secure, and use encryption technology</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <div class="benefit-title">Instant Approval</div>
+                <div class="benefit-description">Get approved in seconds without lengthy paperwork</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <div class="benefit-title">Transparent Pricing</div>
+                <div class="benefit-description">No hidden fees or surprise charges</div>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📱</div>
+                <div class="benefit-title">Easy Management</div>
+                <div class="benefit-description">Track and manage payments through mobile apps</div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <h2 style="text-align: center; margin: 3rem 0 2rem;">Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(event)">
+                    <span>Do I need a credit card to apply?</span>
+                    <span class="accordion-toggle">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>No! Most financing partners like Affirm and Klarna don't require a credit card. They perform a soft credit check and provide instant decisions. You'll just need basic information like your name, email, phone, and date of birth.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(event)">
+                    <span>Will applying affect my credit score?</span>
+                    <span class="accordion-toggle">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Initial applications are soft credit inquiries and won't affect your score. Only if you're approved and accept the offer does a hard inquiry occur, which may have a minimal impact on your credit score.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(event)">
+                    <span>What are the interest rates?</span>
+                    <span class="accordion-toggle">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Interest rates vary by partner and your creditworthiness. Many offer 0% APR for qualified buyers with specific terms. Check with each provider for personalized rates based on your credit profile.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(event)">
+                    <span>Can I pay off my loan early?</span>
+                    <span class="accordion-toggle">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes! Most financing partners allow early payoff without penalties. In fact, paying early can help improve your credit score. Check your specific loan terms for details.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(event)">
+                    <span>What if I'm denied?</span>
+                    <span class="accordion-toggle">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Don't worry! You can try other financing partners as each has different approval criteria. You can also reach out to our sales team for alternative options or payment plans.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(event)">
+                    <span>Is my information secure?</span>
+                    <span class="accordion-toggle">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Absolutely. All our financing partners use bank-level security and encryption. Your personal and financial information is protected and never shared with third parties without consent.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="social-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 NovaByte Gaming. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://discord.com" target="_blank">Discord</a>
+                <a href="https://youtube.com" target="_blank">YouTube</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script>
+        function updateCalculator() {
+            const price = parseInt(document.getElementById('price-slider').value);
+            const months = parseInt(document.getElementById('months-select').value);
+            const fee = Math.round(price * 0.02); // 2% processing fee
+            const total = price + fee;
+            const monthly = Math.round(total / months);
+
+            document.getElementById('price-value').textContent = price.toLocaleString();
+            document.getElementById('result-price').textContent = price.toLocaleString();
+            document.getElementById('result-monthly').textContent = monthly.toLocaleString();
+            document.getElementById('result-fee').textContent = '$' + fee.toLocaleString();
+            document.getElementById('result-total').textContent = total.toLocaleString();
+        }
+
+        function applyFinancing(provider) {
+            alert(`Redirecting to ${provider} application... In a real site, this would open the partner's application process.`);
+        }
+
+        function toggleAccordion(event) {
+            const content = event.target.closest('.accordion-item').querySelector('.accordion-content');
+            const toggle = event.target.closest('.accordion-item').querySelector('.accordion-toggle');
+            
+            // Close other items
+            document.querySelectorAll('.accordion-content.show').forEach(item => {
+                if (item !== content) {
+                    item.classList.remove('show');
+                    item.closest('.accordion-item').querySelector('.accordion-toggle').classList.remove('open');
+                }
+            });
+            
+            content.classList.toggle('show');
+            toggle.classList.toggle('open');
+        }
+
+        // Initialize calculator on load
+        document.addEventListener('DOMContentLoaded', updateCalculator);
+    </script>
+</body>
+</html>

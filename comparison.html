@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compare NovaByte Gaming PC Systems - Side-by-side specifications and pricing">
+    <title>Compare Gaming PCs | NovaByte</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="assets/ChatGPT_Image_Feb_7__2026__04_18_06_PM-removebg-preview.png" alt="NovaByte Logo" class="logo-icon">
+                    <h1>NovaByte</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html" class="nav-link">Home</a></li>
+                    <li><a href="products.html" class="nav-link">Shop</a></li>
+                    <li><a href="customize.html" class="nav-link">Build PC</a></li>
+                    <li><a href="contact.html" class="nav-link">Support</a></li>
+                    <li><a href="search.html" class="nav-link" title="Search">🔍</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="account.html" class="nav-icon" title="Account">
+                        <span class="icon">👤</span>
+                    </a>
+                    <a href="checkout.html" class="nav-icon" title="Cart">
+                        <span class="icon">🛒</span>
+                        <span class="cart-badge" style="display: none;">0</span>
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main style="padding: 2rem 0; background: var(--bg-primary);">
+        <div class="container">
+            <h1 style="text-align: center; margin-bottom: 2rem;">Compare Gaming PCs</h1>
+            
+            <!-- System Selection -->
+            <div style="background: var(--card-bg); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid var(--border-color);">
+                <h2 style="font-size: 1.2rem; margin-bottom: 1.5rem;">Select Systems to Compare</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <!-- System 1 Selector -->
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">System 1</label>
+                        <select id="system1" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--input-bg); color: var(--text-primary); font-size: 1rem;" onchange="updateComparison()">
+                            <option value="">Select a system</option>
+                            <option value="elite">Elite Gaming PC</option>
+                            <option value="pro">Pro Streaming PC</option>
+                            <option value="ultra">Ultra Workstation PC</option>
+                        </select>
+                    </div>
+
+                    <!-- System 2 Selector -->
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">System 2</label>
+                        <select id="system2" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--input-bg); color: var(--text-primary); font-size: 1rem;" onchange="updateComparison()">
+                            <option value="">Select a system</option>
+                            <option value="elite">Elite Gaming PC</option>
+                            <option value="pro">Pro Streaming PC</option>
+                            <option value="ultra">Ultra Workstation PC</option>
+                        </select>
+                    </div>
+
+                    <!-- System 3 Selector -->
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">System 3 (Optional)</label>
+                        <select id="system3" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--input-bg); color: var(--text-primary); font-size: 1rem;" onchange="updateComparison()">
+                            <option value="">Select a system</option>
+                            <option value="elite">Elite Gaming PC</option>
+                            <option value="pro">Pro Streaming PC</option>
+                            <option value="ultra">Ultra Workstation PC</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div id="comparisonContainer" style="overflow-x: auto;">
+                <p style="text-align: center; color: var(--text-secondary);">Select systems above to compare</p>
+            </div>
+
+            <!-- Recommended Section -->
+            <div style="margin-top: 3rem;">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Which System is Right for You?</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                    <!-- Elite Card -->
+                    <div style="background: linear-gradient(135deg, var(--card-bg), var(--input-bg)); padding: 2rem; border-radius: 12px; border: 2px solid #ffd700;">
+                        <h3 style="color: #ffd700; margin-bottom: 1rem;">🏆 Elite Gaming PC</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;"><strong>Best for:</strong> Competitive gamers who demand 240+ FPS at max settings</p>
+                        <ul style="list-style: none; padding: 0; margin: 1.5rem 0;">
+                            <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ Intel i7-13700K</li>
+                            <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ RTX 4070 Ti</li>
+                            <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ 32GB DDR5 RAM</li>
+                            <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ 1TB NVMe SSD</li>
+                        </ul>
+                        <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color); margin: 1.5rem 0;">$899</p>
+                        <button onclick="addToCart({id: 'elite', name: 'Elite Gaming PC', price: 899})" style="width: 100%; padding: 0.75rem; background: var(--primary-color); color: var(--bg-primary); border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem;">Add to Cart</button>
+                    </div>
+
+                    <!-- Pro Card -->
+                    <div style="background: linear-gradient(135deg, var(--card-bg), var(--input-bg)); padding: 2rem; border-radius: 12px; border: 2px solid #64b5f6;">
+                        <h3 style="color: #64b5f6; margin-bottom: 1rem;">🎬 Pro Streaming PC</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;"><strong>Best for:</strong> Content creators streaming at 1440p with zero lag</p>
+                        <ul style="list-style: none; padding: 0; margin: 1.5rem 0;">
+                            <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ Intel i9-13900K</li>
+                            <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ RTX 4080</li>
+                            <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ 64GB DDR5 RAM</li>
+                            <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ 2TB NVMe SSD</li>
+                        </ul>
+                        <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color); margin: 1.5rem 0;">$1,499</p>
+                        <button onclick="addToCart({id: 'pro', name: 'Pro Streaming PC', price: 1499})" style="width: 100%; padding: 0.75rem; background: var(--primary-color); color: var(--bg-primary); border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem;">Add to Cart</button>
+                    </div>
+
+                    <!-- Ultra Card -->
+                    <div style="background: linear-gradient(135deg, var(--card-bg), var(--input-bg)); padding: 2rem; border-radius: 12px; border: 2px solid #ff6b6b;">
+                        <h3 style="color: #ff6b6b; margin-bottom: 1rem;">⚡ Ultra Workstation PC</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;"><strong>Best for:</strong> Professional creators running 3D rendering and AI workflows</p>
+                        <ul style="list-style: none; padding: 0; margin: 1.5rem 0;">
+                            <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ Intel i9-14900KS</li>
+                            <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ RTX 4090</li>
+                            <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ 128GB DDR5 RAM</li>
+                            <li style="padding: 0.5rem 0; color: var(--text-secondary);">✓ 4TB NVMe SSD</li>
+                        </ul>
+                        <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color); margin: 1.5rem 0;">$2,299</p>
+                        <button onclick="addToCart({id: 'ultra', name: 'Ultra Workstation PC', price: 2299})" style="width: 100%; padding: 0.75rem; background: var(--primary-color); color: var(--bg-primary); border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem;">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="home.html" style="color: var(--text-secondary); text-decoration: none;">Home</a></li>
+                        <li><a href="products.html" style="color: var(--text-secondary); text-decoration: none;">Shop</a></li>
+                        <li><a href="customize.html" style="color: var(--text-secondary); text-decoration: none;">Build PC</a></li>
+                        <li><a href="comparison.html" style="color: var(--text-secondary); text-decoration: none;">Compare</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Support</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="contact.html" style="color: var(--text-secondary); text-decoration: none;">Contact Us</a></li>
+                        <li><a href="FAQ.html" style="color: var(--text-secondary); text-decoration: none;">FAQ</a></li>
+                        <li><a href="warranty.html" style="color: var(--text-secondary); text-decoration: none;">Warranty</a></li>
+                        <li><a href="financing.html" style="color: var(--text-secondary); text-decoration: none;">Financing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="about.html" style="color: var(--text-secondary); text-decoration: none;">About Us</a></li>
+                        <li><a href="careers.html" style="color: var(--text-secondary); text-decoration: none;">Careers</a></li>
+                        <li><a href="blog.html" style="color: var(--text-secondary); text-decoration: none;">Blog</a></li>
+                        <li><a href="reviews.html" style="color: var(--text-secondary); text-decoration: none;">Reviews</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Follow Us</h4>
+                    <p style="color: var(--text-secondary);">
+                        <a href="#" style="color: var(--primary-color); margin-right: 1rem;">Twitter</a>
+                        <a href="#" style="color: var(--primary-color); margin-right: 1rem;">Discord</a>
+                        <a href="#" style="color: var(--primary-color);">YouTube</a>
+                    </p>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-secondary);">
+                <p>&copy; 2024 NovaByte Gaming PCs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/comparison.js"></script>
+    <script src="assets/js/cart.js"></script>
+</body>
+</html>

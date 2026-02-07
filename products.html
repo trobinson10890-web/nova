@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NovaByte Gaming PCs - Browse our collection of pre-configured gaming systems.">
+    <title>Products - NovaByte Gaming PCs</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/products.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="assets/ChatGPT_Image_Feb_7__2026__04_18_06_PM-removebg-preview.png" alt="NovaByte Logo" class="logo-icon">
+                    <h1>NovaByte</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html" class="nav-link">Home</a></li>
+                    <li><a href="products.html" class="nav-link active">Shop</a></li>
+                    <li><a href="customize.html" class="nav-link">Build PC</a></li>
+                    <li><a href="contact.html" class="nav-link">Support</a></li>
+                    <li><a href="search.html" class="nav-link" title="Search">🔍</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="account.html" class="nav-icon" title="Account">
+                        <span class="icon">👤</span>
+                    </a>
+                    <a href="checkout.html" class="nav-icon" title="Cart">
+                        <span class="icon">🛒</span>
+                        <span class="cart-badge" style="display: none;">0</span>
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Gaming PC Systems</h1>
+            <p>Professional-grade gaming PCs for every performance level</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" style="background-image: url('assets/products-banner.png'); background-size: cover; background-position: center; margin-bottom: 2rem;">
+        <div class="container">
+            <div class="products-wrapper">
+                <!-- Filters Sidebar -->
+                <aside class="filters-sidebar">
+                    <div class="filter-group">
+                        <h3>Price Range</h3>
+                        <div class="price-range">
+                            <input type="range" min="500" max="3000" value="3000" class="price-slider" id="priceSlider">
+                            <div class="price-display">
+                                <span>$500</span>
+                                <span id="priceValue">$3000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>GPU</h3>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="RTX 4070" data-filter="gpu">
+                            <span>RTX 4070</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="RTX 4080" data-filter="gpu">
+                            <span>RTX 4080</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="RTX 4090" data-filter="gpu">
+                            <span>RTX 4090</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="RTX 3060" data-filter="gpu">
+                            <span>RTX 3060</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Performance Tier</h3>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="budget" data-filter="tier">
+                            <span>Budget</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="mid" data-filter="tier">
+                            <span>Mid-Range</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="high" data-filter="tier">
+                            <span>High-End</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="extreme" data-filter="tier">
+                            <span>Extreme</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>RAM</h3>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="16GB" data-filter="ram">
+                            <span>16GB</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="32GB" data-filter="ram">
+                            <span>32GB</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="64GB" data-filter="ram">
+                            <span>64GB</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="128GB" data-filter="ram">
+                            <span>128GB+</span>
+                        </label>
+                    </div>
+                </aside>
+
+                <!-- Products Main -->
+                <div class="products-main">
+                    <!-- Sorting Bar -->
+                    <div class="sorting-bar">
+                        <div class="product-count">
+                            Showing <span id="productCount">12</span> products
+                        </div>
+                        <div class="sort-options">
+                            <label>Sort by:</label>
+                            <select class="sort-select" id="sortSelect">
+                                <option value="featured">Featured</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="name">Name A-Z</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Products will be dynamically loaded here -->
+                    </div>
+
+                    <!-- No Results Message -->
+                    <div class="no-results" style="display: none;">
+                        <h3>No products found</h3>
+                        <p>Try adjusting your filters to find what you're looking for</p>
+                    </div>
+
+                    <!-- Comparison Tools -->
+                    <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, var(--card-bg), var(--input-bg)); border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h3 style="margin-top: 0; margin-bottom: 1rem;">Want to Compare?</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Use our comparison tool to see detailed specs side-by-side and make the best choice for your needs.</p>
+                        <a href="comparison.html" style="display: inline-block; padding: 0.75rem 2rem; background: var(--primary-color); color: var(--bg-primary); text-decoration: none; border-radius: 8px; font-weight: bold;">View Comparison Tool</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NovaByte</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="products.html">Gaming PCs</a></li>
+                        <li><a href="build.html">PC Builder</a></li>
+                        <li><a href="#">Upgrades</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Warranty</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NovaByte. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/social-footer.js"></script>
+    <script src="assets/js/forms.js"></script>
+</body>
+</html>

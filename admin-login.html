@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NovaByte Admin Portal - Secure Login">
+    <title>Admin Login - NovaByte</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.1);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-login:hover {
+            background: #d63a52;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.3);
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c00;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+            border: 1px solid #fcc;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .back-link a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .security-note {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .security-note strong {
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>NovaByte Admin</h1>
+            <p>Secure Portal Access</p>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <form onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="username">Admin Username</label>
+                <input type="text" id="username" required placeholder="Enter admin username">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Admin Password</label>
+                <input type="password" id="password" required placeholder="Enter admin password">
+            </div>
+
+            <button type="submit" class="btn-login">Login to Admin Dashboard</button>
+        </form>
+
+        <div class="back-link">
+            <a href="home.html">← Back to Home</a>
+        </div>
+
+        <div class="security-note">
+            <strong>Demo Credentials:</strong><br>
+            Username: <code>admin</code><br>
+            Password: <code>admin123</code>
+        </div>
+    </div>
+
+    <script>
+        // Check if already logged in
+        if (localStorage.getItem('adminLoggedIn') === 'true') {
+            window.location.href = 'admin.html';
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+
+            // Simple authentication (in a real app, this would be server-side)
+            const validCredentials = {
+                'admin': 'admin123',
+                'novabyte': 'secure2024'
+            };
+
+            if (validCredentials[username] && validCredentials[username] === password) {
+                // Set admin session
+                localStorage.setItem('adminLoggedIn', 'true');
+                localStorage.setItem('adminUser', username);
+                localStorage.setItem('adminLoginTime', new Date().getTime());
+                
+                // Redirect to admin dashboard
+                window.location.href = 'admin.html';
+            } else {
+                errorDiv.textContent = 'Invalid username or password. Please try again.';
+                errorDiv.style.display = 'block';
+                document.getElementById('password').value = '';
+            }
+        }
+    </script>
+</body>
+</html>

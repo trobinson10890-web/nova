@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact form submission confirmation - NovaByte">
+    <title>Submission Confirmed - NovaByte</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .confirmation-container {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .confirmation-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .confirmation-card h1 {
+            color: var(--accent-color);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .confirmation-card p {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .confirmation-details {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .detail-value {
+            color: var(--text-dark);
+        }
+
+        .next-steps {
+            background: linear-gradient(135deg, #f0f2f5 0%, #ffffff 100%);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .next-steps h3 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .next-steps ol {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+
+        .next-steps li {
+            color: var(--text-dark);
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .contact-option {
+            background: #f8f9fa;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        .contact-option:hover {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .contact-option strong {
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-option small {
+            display: block;
+            font-size: 0.85rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .action-buttons a {
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .action-buttons .home-btn {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .action-buttons .home-btn:hover {
+            background: #d94050;
+        }
+
+        .action-buttons .shop-btn {
+            background: #f0f2f5;
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .action-buttons .shop-btn:hover {
+            background: #e8eaed;
+        }
+
+        @media (max-width: 768px) {
+            .confirmation-card {
+                padding: 2rem;
+            }
+
+            .confirmation-card h1 {
+                font-size: 1.5rem;
+            }
+
+            .contact-options {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="assets/ChatGPT_Image_Feb_7__2026__04_18_06_PM-removebg-preview.png" alt="NovaByte Logo" class="logo-icon">
+                    <h1>NovaByte</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html" class="nav-link">Home</a></li>
+                    <li><a href="products.html" class="nav-link">Shop</a></li>
+                    <li><a href="customize.html" class="nav-link">Build PC</a></li>
+                    <li><a href="contact.html" class="nav-link">Support</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="account.html" class="nav-icon" title="Account">
+                        <span class="icon">👤</span>
+                    </a>
+                    <a href="checkout.html" class="nav-icon" title="Cart">
+                        <span class="icon">🛒</span>
+                        <span class="cart-badge" style="display: none;">0</span>
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Confirmation Section -->
+    <section class="confirmation-container">
+        <div class="confirmation-card">
+            <div class="success-icon">✓</div>
+            <h1>Thank You!</h1>
+            <p>We've received your message and will get back to you as soon as possible.</p>
+
+            <!-- Submission Details -->
+            <div class="confirmation-details">
+                <div class="detail-row">
+                    <span class="detail-label">Reference Number</span>
+                    <span class="detail-value">#NB-2026-045892</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Submitted</span>
+                    <span class="detail-value" id="submissionTime">Just now</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status</span>
+                    <span class="detail-value" style="color: #28a745; font-weight: 600;">Received</span>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h3>What Happens Next?</h3>
+                <ol>
+                    <li><strong>We'll review your message</strong> - Our team will carefully read your inquiry</li>
+                    <li><strong>We'll prioritize accordingly</strong> - Urgent issues get priority handling</li>
+                    <li><strong>We'll get back to you</strong> - Expect a response within 2 business hours</li>
+                    <li><strong>We'll resolve your issue</strong> - We'll work with you until you're satisfied</li>
+                </ol>
+            </div>
+
+            <!-- Expected Response Time -->
+            <div style="background: linear-gradient(135deg, #e94560 0%, #d94050 100%); color: white; border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0;">
+                <strong style="display: block; margin-bottom: 0.5rem;">Expected Response Time</strong>
+                <div style="font-size: 1.3rem; font-weight: 700;">2 Hours</div>
+                <small style="display: block; margin-top: 0.5rem;">Our average response time for customer inquiries</small>
+            </div>
+
+            <!-- Contact Options -->
+            <p style="color: var(--text-gray); margin-top: 2rem; margin-bottom: 1rem;">Need to reach us sooner?</p>
+            <div class="contact-options">
+                <a href="tel:1-800-novabyte" class="contact-option">
+                    <strong>☎</strong>
+                    <small>1-800-NOVABYTE</small>
+                </a>
+                <a href="https://chat.example.com" class="contact-option" target="_blank">
+                    <strong>💬</strong>
+                    <small>Live Chat Now</small>
+                </a>
+                <a href="mailto:support@novabyte.com" class="contact-option">
+                    <strong>✉</strong>
+                    <small>Email Support</small>
+                </a>
+            </div>
+
+            <!-- Additional Information -->
+            <div style="background: #f8f9fa; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; text-align: left;">
+                <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-weight: 700;">Helpful Information</h4>
+                <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-dark);">
+                    <li style="margin-bottom: 0.5rem;">Keep your reference number handy for quick support</li>
+                    <li style="margin-bottom: 0.5rem;">Check your email (including spam folder) for our response</li>
+                    <li style="margin-bottom: 0.5rem;">Check <a href="FAQ.html" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">our FAQ</a> for quick answers</li>
+                    <li style="margin-bottom: 0.5rem;">Our support team is available 24/7 via live chat</li>
+                </ul>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <a href="home.html" class="home-btn">← Back to Home</a>
+                <a href="products.html" class="shop-btn">Continue Shopping →</a>
+            </div>
+
+            <!-- Footer Note -->
+            <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                You can track your inquiry status anytime by logging into your account or using your reference number.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NovaByte</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="products.html">Gaming PCs</a></li>
+                        <li><a href="build.html">PC Builder</a></li>
+                        <li><a href="#">Upgrades</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="FAQ.html">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Warranty</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NovaByte. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set submission time
+        const now = new Date();
+        const timeString = now.toLocaleString('en-US', { 
+            month: 'short', 
+            day: 'numeric', 
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        document.getElementById('submissionTime').textContent = timeString;
+
+        // Generate random reference number on page load
+        const referenceNumber = '#NB-' + new Date().getFullYear() + '-' + Math.floor(Math.random() * 999999).toString().padStart(6, '0');
+        document.querySelectorAll('.detail-value')[0].textContent = referenceNumber;
+    </script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/social-footer.js"></script>
+    <script src="assets/js/forms.js"></script>
+</body>
+</html>

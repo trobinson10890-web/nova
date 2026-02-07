@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Order Confirmation - NovaByte Gaming PCs">
+    <title>Order Confirmation - NovaByte</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .confirmation-container {
+            text-align: center;
+            padding: 4rem 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 2rem;
+            animation: bounceIn 0.6s ease-out;
+        }
+
+        .confirmation-header h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .confirmation-header p {
+            color: #00aa44;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .order-details {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--light-bg);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .detail-value {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .items-breakdown {
+            background: var(--light-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .items-breakdown h3 {
+            color: var(--primary-color);
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            color: var(--text-dark);
+        }
+
+        .item-details {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .item-price {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .total-price {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-top: 2px solid var(--border-color);
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-action {
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-account {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn-account:hover {
+            background: #d63a52;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.3);
+        }
+
+        .btn-shop {
+            background: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-shop:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .next-steps {
+            background: #f0f8ff;
+            border-left: 4px solid #0099ff;
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .next-steps h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .steps-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .steps-list li {
+            padding: 0.5rem 0;
+            color: var(--text-dark);
+        }
+
+        .steps-list li:before {
+            content: "✓ ";
+            color: #00aa44;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .contact-info {
+            background: var(--light-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: var(--text-dark);
+            margin: 0.5rem 0;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .confirmation-container {
+                padding: 2rem 1rem;
+            }
+
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .order-details {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="assets/ChatGPT_Image_Feb_7__2026__04_18_06_PM-removebg-preview.png" alt="NovaByte Logo" class="logo-icon">
+                    <h1>NovaByte</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html" class="nav-link">Home</a></li>
+                    <li><a href="products.html" class="nav-link">Shop</a></li>
+                    <li><a href="customize.html" class="nav-link">Build PC</a></li>
+                    <li><a href="contact.html" class="nav-link">Support</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="account.html" class="nav-icon" title="Account">
+                        <span class="icon">👤</span>
+                    </a>
+                    <a href="checkout.html" class="nav-icon" title="Cart">
+                        <span class="icon">🛒</span>
+                        <span class="cart-badge" style="display: none;">0</span>
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Confirmation Section -->
+    <section class="section" style="padding: 3rem 0;">
+        <div class="container">
+            <div class="confirmation-container">
+                <div class="success-icon">✓</div>
+                <div class="confirmation-header">
+                    <h1>Order Confirmed!</h1>
+                    <p>Your gaming PC is on its way</p>
+                </div>
+
+                <div class="order-details" id="orderDetails"></div>
+
+                <div class="items-breakdown" id="itemsBreakdown"></div>
+
+                <div class="next-steps">
+                    <h3>What Happens Next?</h3>
+                    <ul class="steps-list">
+                        <li>We'll send you a confirmation email shortly</li>
+                        <li>Your PC will be built and tested before shipping</li>
+                        <li>You'll receive tracking information via email</li>
+                        <li>Estimated delivery: 5-7 business days</li>
+                        <li>24/7 support is available if you need assistance</li>
+                    </ul>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Need Help?</h3>
+                    <p>📧 Email: <strong>support@novabyte.com</strong></p>
+                    <p>📞 Phone: <strong>1-800-NOVABYTE</strong></p>
+                    <p>💬 Live Chat: Available 24/7 on our website</p>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-action btn-account" onclick="window.location.href='account.html'">
+                        View in Account
+                    </button>
+                    <button class="btn-action btn-shop" onclick="window.location.href='products.html'">
+                        Shop More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="products.html">Gaming PCs</a></li>
+                        <li><a href="build.html">PC Builder</a></li>
+                        <li><a href="account.html">My Account</a></li>
+                        <li><a href="FAQ.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="contact.html">Help Center</a></li>
+                        <li><a href="contact.html">Track Order</a></li>
+                        <li><a href="contact.html">Shipping Info</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> NovaByte. All rights reserved.</p>
+                <div class="social-media" id="socialFooter"></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/forms.js"></script>
+    <script src="assets/js/social-footer.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const order = JSON.parse(localStorage.getItem('lastOrder'));
+            
+            if (!order) {
+                document.querySelector('.confirmation-container').innerHTML = `
+                    <div style="text-align: center; padding: 4rem 2rem;">
+                        <h1 style="color: var(--primary-color);">No Order Found</h1>
+                        <p>It looks like there's no recent order to display.</p>
+                        <button class="btn btn-primary" onclick="window.location.href='products.html'" style="padding: 1rem 2rem; font-size: 1.1rem; margin-top: 1.5rem;">
+                            Shop Now
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            displayOrderDetails(order);
+        });
+
+        function displayOrderDetails(order) {
+            // Order details
+            const detailsHTML = `
+                <div class="detail-row">
+                    <span class="detail-label">Order ID:</span>
+                    <span class="detail-value">${order.orderId}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Order Date:</span>
+                    <span class="detail-value">${order.date}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="detail-value" style="color: #00aa44;">✓ ${order.status}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Shipping To:</span>
+                    <span class="detail-value">${order.firstName} ${order.lastName}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Address:</span>
+                    <span class="detail-value">${order.address}, ${order.city}, ${order.state} ${order.zip}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Email:</span>
+                    <span class="detail-value">${order.email}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Phone:</span>
+                    <span class="detail-value">${order.phone}</span>
+                </div>
+            `;
+
+            // Items breakdown
+            const itemsHTML = `
+                <h3>Items Ordered</h3>
+                ${order.items.map(item => `
+                    <div class="order-item">
+                        <div>
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-details">Quantity: ${item.quantity}</div>
+                        </div>
+                        <div class="item-price">$${(parseInt(item.price.toString().replace(/[^0-9]/g, '')) * item.quantity).toLocaleString()}</div>
+                    </div>
+                `).join('')}
+                <div class="total-price">
+                    <span>Total Amount:</span>
+                    <span>${order.total}</span>
+                </div>
+            `;
+
+            document.getElementById('orderDetails').innerHTML = detailsHTML;
+            document.getElementById('itemsBreakdown').innerHTML = itemsHTML;
+        }
+    </script>
+</body>
+</html>

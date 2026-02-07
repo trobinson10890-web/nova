@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NovaByte Contact & Support - Get in touch with our sales and support team.">
+    <title>Contact & Support - NovaByte</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/contact.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="assets/ChatGPT_Image_Feb_7__2026__04_18_06_PM-removebg-preview.png" alt="NovaByte Logo" class="logo-icon">
+                    <h1>NovaByte</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html" class="nav-link">Home</a></li>
+                    <li><a href="products.html" class="nav-link">Shop</a></li>
+                    <li><a href="customize.html" class="nav-link">Build PC</a></li>
+                    <li><a href="contact.html" class="nav-link active">Support</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="account.html" class="nav-icon" title="Account">
+                        <span class="icon">👤</span>
+                    </a>
+                    <a href="checkout.html" class="nav-icon" title="Cart">
+                        <span class="icon">🛒</span>
+                        <span class="cart-badge" style="display: none;">0</span>
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background-image: url('assets/contact-banner.png'); background-size: cover; background-position: center;">
+        <div class="container">
+            <h1>Contact & Support</h1>
+            <p>We're here to help. Reach out anytime with questions or feedback.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <!-- Contact Info Grid -->
+            <div class="contact-info-grid">
+                <div class="contact-card">
+                    <span class="contact-icon">📞</span>
+                    <h3>Phone</h3>
+                    <p>+1 (555) 123-4567</p>
+                    <p class="small-text">Mon-Fri: 9AM-6PM EST</p>
+                </div>
+                <div class="contact-card">
+                    <span class="contact-icon">📧</span>
+                    <h3>Email</h3>
+                    <p>support@novabyte.com</p>
+                    <p class="small-text">We respond within 24 hours</p>
+                </div>
+                <div class="contact-card">
+                    <span class="contact-icon">📍</span>
+                    <h3>Address</h3>
+                    <p>123 Tech Boulevard</p>
+                    <p class="small-text">San Francisco, CA 94105</p>
+                </div>
+            </div>
+
+            <div class="contact-wrapper">
+                <!-- Contact Tabs -->
+                <div class="contact-tabs">
+                    <div class="tabs-header">
+                        <button class="tab-button active" onclick="openTab(event, 'contact-form')">Contact Form</button>
+                        <button class="tab-button" onclick="openTab(event, 'tickets')">Support Tickets</button>
+                        <button class="tab-button" onclick="openTab(event, 'faq')">FAQ</button>
+                    </div>
+
+                    <!-- Contact Form Tab -->
+                    <div id="contact-form" class="tab-content active">
+                        <h2>Send us a Message</h2>
+                        <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Full Name *</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="subject">Subject *</label>
+                                    <select id="subject" name="subject" required>
+                                        <option value="">Select a subject...</option>
+                                        <option value="sales">Sales Inquiry</option>
+                                        <option value="technical">Technical Support</option>
+                                        <option value="warranty">Warranty & Returns</option>
+                                        <option value="shipping">Shipping & Delivery</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="priority">Priority</label>
+                                    <select id="priority" name="priority">
+                                        <option value="low">Low</option>
+                                        <option value="medium" selected>Medium</option>
+                                        <option value="high">High</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+
+                            <div class="form-group checkbox">
+                                <input type="checkbox" id="newsletter" name="newsletter">
+                                <label for="newsletter">Subscribe to our newsletter for updates</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+
+                    <!-- Support Tickets Tab -->
+                    <div id="tickets" class="tab-content">
+                        <h2>Your Support Tickets</h2>
+                        <div class="tickets-container" id="ticketsContainer">
+                            <div class="no-tickets">
+                                <p>No support tickets yet. Submit a message above to create one.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Tab -->
+                    <div id="faq" class="tab-content">
+                        <h2>Frequently Asked Questions</h2>
+                        <div class="faq-grid">
+                            <div class="faq-item">
+                                <h4>What's your warranty coverage?</h4>
+                                <p>All systems come with a standard 3-year warranty covering all components. Extended coverage options are available at checkout.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>How long does shipping take?</h4>
+                                <p>Most systems are built and shipped within 3-5 business days. Standard shipping takes 5-7 business days, express shipping available.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Can I customize a pre-built system?</h4>
+                                <p>Yes! Use our PC Builder to modify any component. Our team will help optimize your configuration for your needs.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>What payment methods do you accept?</h4>
+                                <p>We accept all major credit cards, PayPal, Apple Pay, and Google Pay. Financing options available for purchases over $1000.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Do you offer technical support?</h4>
+                                <p>Yes! 24/7 technical support is included with every purchase. Contact us via phone, email, or live chat anytime.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>What about returns and exchanges?</h4>
+                                <p>30-day money-back guarantee on all systems. RMA process handled quickly with prepaid shipping labels provided.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Can you help with gaming optimization?</h4>
+                                <p>Our experts can optimize your system for specific games, adjust performance settings, and provide gaming tips upon request.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4>Do you offer educational discounts?</h4>
+                                <p>Yes! Students and educators receive 10% off. Bulk orders and corporate discounts also available. Contact sales for details.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2>Still Have Questions?</h2>
+            <p>Our expert team is ready to help you find the perfect gaming PC</p>
+            <a href="tel:+15551234567" class="btn btn-primary">Call Us Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NovaByte</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="products.html">Gaming PCs</a></li>
+                        <li><a href="build.html">PC Builder</a></li>
+                        <li><a href="#">Upgrades</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Warranty</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NovaByte. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Live Chat Widget -->
+    <div class="live-chat-widget">
+        <div class="chat-header" onclick="toggleChat()">
+            <h3>NovaByte Chat</h3>
+            <span class="chat-toggle">−</span>
+        </div>
+        <div class="chat-body">
+            <div class="chat-status">
+                <span class="status-dot online"></span>
+                <span>Support Team Online</span>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-message bot">
+                    <p>Hi there! How can we help you today? 👋</p>
+                    <span class="message-time">Just now</span>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatInput(event)">
+                <button onclick="sendChatMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/contact.js"></script>
+    <script src="assets/js/social-footer.js"></script>
+    <script src="assets/js/forms.js"></script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NovaByte PC Builder - Configure your perfect gaming PC with real-time pricing.">
+    <title>Build Your PC - NovaByte</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/build.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="assets/ChatGPT_Image_Feb_7__2026__04_18_06_PM-removebg-preview.png" alt="NovaByte Logo" class="logo-icon">
+                    <h1>NovaByte</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="home.html" class="nav-link">Home</a></li>
+                    <li><a href="products.html" class="nav-link">Shop</a></li>
+                    <li><a href="customize.html" class="nav-link active">Build PC</a></li>
+                    <li><a href="contact.html" class="nav-link">Support</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <a href="account.html" class="nav-icon" title="Account">
+                        <span class="icon">👤</span>
+                    </a>
+                    <a href="checkout.html" class="nav-icon" title="Cart">
+                        <span class="icon">🛒</span>
+                        <span class="cart-badge" style="display: none;">0</span>
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>PC Builder</h1>
+            <p>Create your custom gaming PC with real-time pricing and performance estimates</p>
+        </div>
+    </section>
+
+    <!-- Build Section -->
+    <section class="build-section">
+        <div class="container">
+            <div class="build-wrapper">
+                <!-- Components Selector -->
+                <div class="components-selector">
+                    <!-- CPU -->
+                    <div class="component-card">
+                        <div class="component-header">
+                            <h3>Processor</h3>
+                            <span class="component-price" id="cpuPrice">$0</span>
+                        </div>
+                        <select class="component-select" id="cpuSelect" onchange="updatePrice()">
+                            <option value="0" data-price="0">Select Processor...</option>
+                            <option value="Intel i5-13600K" data-price="299">Intel i5-13600K - $299</option>
+                            <option value="Intel i7-13700K" data-price="449">Intel i7-13700K - $449</option>
+                            <option value="Intel i9-13900K" data-price="699">Intel i9-13900K - $699</option>
+                            <option value="AMD Ryzen 7 7700X" data-price="349">AMD Ryzen 7 7700X - $349</option>
+                        </select>
+                    </div>
+
+                    <!-- GPU -->
+                    <div class="component-card">
+                        <div class="component-header">
+                            <h3>Graphics Card</h3>
+                            <span class="component-price" id="gpuPrice">$0</span>
+                        </div>
+                        <select class="component-select" id="gpuSelect" onchange="updatePrice()">
+                            <option value="0" data-price="0">Select Graphics Card...</option>
+                            <option value="RTX 4070 Super" data-price="599">RTX 4070 Super - $599</option>
+                            <option value="RTX 4080 Super" data-price="999">RTX 4080 Super - $999</option>
+                            <option value="RTX 4090" data-price="1599">RTX 4090 - $1599</option>
+                            <option value="RTX 4060 Ti" data-price="399">RTX 4060 Ti - $399</option>
+                        </select>
+                    </div>
+
+                    <!-- RAM -->
+                    <div class="component-card">
+                        <div class="component-header">
+                            <h3>Memory</h3>
+                            <span class="component-price" id="ramPrice">$0</span>
+                        </div>
+                        <select class="component-select" id="ramSelect" onchange="updatePrice()">
+                            <option value="0" data-price="0">Select RAM...</option>
+                            <option value="16GB DDR5" data-price="99">16GB DDR5 - $99</option>
+                            <option value="32GB DDR5" data-price="179">32GB DDR5 - $179</option>
+                            <option value="64GB DDR5" data-price="349">64GB DDR5 - $349</option>
+                            <option value="128GB DDR5" data-price="699">128GB DDR5 - $699</option>
+                        </select>
+                    </div>
+
+                    <!-- Storage -->
+                    <div class="component-card">
+                        <div class="component-header">
+                            <h3>Storage</h3>
+                            <span class="component-price" id="storagePrice">$0</span>
+                        </div>
+                        <select class="component-select" id="storageSelect" onchange="updatePrice()">
+                            <option value="0" data-price="0">Select Storage...</option>
+                            <option value="1TB NVMe SSD" data-price="79">1TB NVMe SSD - $79</option>
+                            <option value="2TB NVMe SSD" data-price="149">2TB NVMe SSD - $149</option>
+                            <option value="4TB NVMe SSD" data-price="299">4TB NVMe SSD - $299</option>
+                        </select>
+                    </div>
+
+                    <!-- Cooling -->
+                    <div class="component-card">
+                        <div class="component-header">
+                            <h3>Cooling System</h3>
+                            <span class="component-price" id="coolingPrice">$0</span>
+                        </div>
+                        <select class="component-select" id="coolingSelect" onchange="updatePrice()">
+                            <option value="0" data-price="0">Select Cooling...</option>
+                            <option value="Stock Cooler" data-price="0">Stock Cooler - $0</option>
+                            <option value="Noctua NH-D15" data-price="89">Noctua NH-D15 - $89</option>
+                            <option value="Corsair H100i Elite" data-price="129">Corsair H100i Elite - $129</option>
+                            <option value="NZXT Kraken Z73" data-price="189">NZXT Kraken Z73 - $189</option>
+                        </select>
+                    </div>
+
+                    <!-- PSU -->
+                    <div class="component-card">
+                        <div class="component-header">
+                            <h3>Power Supply</h3>
+                            <span class="component-price" id="psuPrice">$0</span>
+                        </div>
+                        <select class="component-select" id="psuSelect" onchange="updatePrice()">
+                            <option value="0" data-price="0">Select PSU...</option>
+                            <option value="750W Gold" data-price="99">750W Gold - $99</option>
+                            <option value="850W Gold" data-price="129">850W Gold - $129</option>
+                            <option value="1000W Platinum" data-price="199">1000W Platinum - $199</option>
+                        </select>
+                    </div>
+
+                    <!-- Case -->
+                    <div class="component-card">
+                        <div class="component-header">
+                            <h3>Case</h3>
+                            <span class="component-price" id="casePrice">$0</span>
+                        </div>
+                        <select class="component-select" id="caseSelect" onchange="updatePrice()">
+                            <option value="0" data-price="0">Select Case...</option>
+                            <option value="NZXT H710" data-price="149">NZXT H710 - $149</option>
+                            <option value="Corsair 5000T" data-price="299">Corsair 5000T - $299</option>
+                            <option value="Lian Li O11 Dynamic" data-price="179">Lian Li O11 Dynamic - $179</option>
+                        </select>
+                    </div>
+
+                    <!-- Motherboard -->
+                    <div class="component-card">
+                        <div class="component-header">
+                            <h3>Motherboard</h3>
+                            <span class="component-price" id="moboPrice">$0</span>
+                        </div>
+                        <select class="component-select" id="moboSelect" onchange="updatePrice()">
+                            <option value="0" data-price="0">Select Motherboard...</option>
+                            <option value="MSI Z790-E" data-price="299">MSI Z790-E - $299</option>
+                            <option value="ASUS ROG Maximus" data-price="499">ASUS ROG Maximus - $499</option>
+                            <option value="Gigabyte Z790 Aorus" data-price="349">Gigabyte Z790 Aorus - $349</option>
+                        </select>
+                    </div>
+
+                    <!-- RGB & Assembly -->
+                    <div class="component-card">
+                        <div class="component-header">
+                            <h3>RGB & Assembly</h3>
+                            <span class="component-price" id="rgbPrice">$0</span>
+                        </div>
+                        <select class="component-select" id="rgbSelect" onchange="updatePrice()">
+                            <option value="Standard" data-price="0">Standard Assembly - $0</option>
+                            <option value="RGB Lighting Package" data-price="79">RGB Lighting Package - $79</option>
+                            <option value="Premium RGB Setup" data-price="149">Premium RGB Setup - $149</option>
+                            <option value="Custom RGB" data-price="199">Custom RGB System - $199</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Build Summary Sidebar -->
+                <div class="build-summary">
+                    <!-- PC Visualization -->
+                    <div class="build-visualization">
+                        <h3>Your Build</h3>
+                        <div class="pc-visualization">
+                            <div class="pc-tower">
+                                <div class="tower-top">⚙️</div>
+                                <div class="tower-middle">
+                                    <div class="tower-left">🎮</div>
+                                    <div class="tower-right">
+                                        <span>💾</span>
+                                        <span>🌡️</span>
+                                    </div>
+                                </div>
+                                <div class="tower-bottom">⚡</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Build Details -->
+                    <div class="build-details">
+                        <h3>Components</h3>
+                        <div class="summary-item">
+                            <label>CPU:</label>
+                            <span id="summaryCP">Not selected</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>GPU:</label>
+                            <span id="summaryGPU">Not selected</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>RAM:</label>
+                            <span id="summaryRAM">Not selected</span>
+                        </div>
+                        <div class="summary-item">
+                            <label>Storage:</label>
+                            <span id="summaryStorage">Not selected</span>
+                        </div>
+
+                        <div class="price-breakdown">
+                            <h4>Price Breakdown</h4>
+                            <div class="price-items">
+                                <div class="price-item">
+                                    <span>Components:</span>
+                                    <span id="subtotal">$0.00</span>
+                                </div>
+                                <div class="price-item">
+                                    <span>Tax (10%):</span>
+                                    <span id="tax">$0.00</span>
+                                </div>
+                            </div>
+                            <div class="price-total">
+                                <span>Total:</span>
+                                <span id="total">$0.00</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="addToCart()">Add to Cart</button>
+                    </div>
+
+                    <!-- Performance Estimate -->
+                    <div class="performance-estimate">
+                        <h3>Performance Est.</h3>
+                        <div class="performance-item">
+                            <label>1080p Gaming:</label>
+                            <span id="perf1080">-</span>
+                        </div>
+                        <div class="performance-item">
+                            <label>1440p Gaming:</label>
+                            <span id="perf1440">-</span>
+                        </div>
+                        <div class="performance-item">
+                            <label>4K Gaming:</label>
+                            <span id="perf4k">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NovaByte</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="products.html">Gaming PCs</a></li>
+                        <li><a href="build.html">PC Builder</a></li>
+                        <li><a href="#">Upgrades</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Warranty</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NovaByte. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/build.js"></script>
+    <script src="assets/js/social-footer.js"></script>
+    <script src="assets/js/forms.js"></script>
+</body>
+</html>
